@@ -15,4 +15,3 @@ Explain the args being passed in order:
 * Your user access token (from the prereqs)
 * The file that you want to move from your laptop to your workspace
 * The path where you want the file uploaded
-
