@@ -1,7 +1,7 @@
 # Databricks Gems
 While working at Databricks, I have found many tips and tricks that customers have found valuable. So, I put them out on here so that everyone can benefit from. Welcome to Databricks Gems! There are helpful gems for the UI, API, etc.
 
-# uploadNotebook.py
+# [uploadNotebook.py](../master/uploadNotebook.py)
 [This](../master/uploadNotebook.py) is a brief demo on how to use the Databricks REST API to upload a given file (python in this case) to your Databricks workspace
 
 ## Prerequisites
