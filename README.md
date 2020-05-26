@@ -5,7 +5,7 @@ While working at Databricks, I have found many tips and tricks that customers ha
 [This] (https://github.com/justinbreese/databricks-gems/blob/master/uploadNotebook.py) is a brief demo on how to use the Databricks REST API to upload a given file (python in this case) to your Databricks workspace
 
 ## Prerequisites
-* You have a [user access token] [https://docs.databricks.com/dev-tools/api/latest/authentication.html] for your Databricks workspace 
+* You have a [user access token] (https://docs.databricks.com/dev-tools/api/latest/authentication.html) for your Databricks workspace 
 
 ## Sample command
 `python3 uploadNotebook.py https://demo.cloud.databricks.com <insert-your-token-here> artifacts/sample.py /Users/justin.breese@databricks.com/temp/sample`
