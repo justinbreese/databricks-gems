@@ -17,7 +17,7 @@ Explain the args being passed in order:
 * The path where you want the file uploaded
 
 # [getPort.py](../master/getPort.py)
-Showing you how to get the port of a given `clusterId`
+Showing you how to get the port of a given `clusterId` via the API
 
 ## Prerequisites
 * You have a [user access token](https://docs.databricks.com/dev-tools/api/latest/authentication.html) for your Databricks workspace
