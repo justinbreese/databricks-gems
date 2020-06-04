@@ -18,5 +18,5 @@ Explain the args being passed in order:
 
 # TODO
 * Shuffle calculator
-* Libraries 
+* Passing variables from job params to a notebook
 * Moving local files via DBFS
