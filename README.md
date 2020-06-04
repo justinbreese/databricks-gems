@@ -24,7 +24,7 @@ Showing you how to get the port of a given `clusterId` via the API
 * You have a given `clusterId`
 
 ## Sample command
-` python3 .\getPort.py https://demo.cloud.databricks.com <insert-your-token-here> 0318-151752-abed99`
+`python3 .\getPort.py https://demo.cloud.databricks.com <insert-your-token-here> 0318-151752-abed99`
 
 Explain the args being passed in order:
 * URL of your Databricks environment (note: no trailing `/`)
