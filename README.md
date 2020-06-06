@@ -37,8 +37,8 @@ Explain the args being passed in order:
 
 # [sparkShufflePartitionCalculator.py](../master/shufflePartitionCalculator/sparkShufflePartitionCalculator.py)
 * Quick and dirty calculator that helps you figure out the optimal configurations for the `spark.sql.files.maxPartitionBytes` and `spark.sql.shuffle.partitions` settings
-* Also, included some JavaScript and HTML for the accompanying page on my personal website which shows this calculator in action
 * If you want to use a pre-built calculator on my website, go to: [Spark Shuffle Partition Calculator](http://justinbreese.com/shuffle-partition-calculator/)
+* Also, included the JavaScript, CSS, and HTML for the accompanying page on my website ^^
 
 ## Prerequisites
 * You know your `shuffleRead` amount for a given Spark job
