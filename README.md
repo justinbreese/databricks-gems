@@ -68,8 +68,10 @@ Description of the output:
 * Cluster core cycles is the amount of times a given core will have to do work (Total Spark Partitions / amount of cores in your cluster)
 * Suggested shuffle partitions is what this calculator recommends for your `spark.sql.shuffle.partitions`
 * Finally, the output provides you with the actual Spark configs that you can use: 
-``` spark.conf.set("spark.sql.files.maxPartitionBytes", 134217728)
-spark.conf.set("spark.sql.shuffle.partitions", 4292)```
+``` 
+spark.conf.set("spark.sql.files.maxPartitionBytes", 134217728)
+spark.conf.set("spark.sql.shuffle.partitions", 4292)
+```
 
 # TODO
 * Passing variables from job params to a notebook
