@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <script src="shufflePartitionCalculator.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<form action="javascript:void(0);" name="shuffleForm">
+    <div class="item">
+        <div class="inputDesc">Shuffle Size (GB): </div>
+        <input type="number" name="textBox" class="textbox" id="shuffleSize" value="550" onclick="buttonPressed()" onblur="buttonPressed()" />
+    </div>
+    <br /><br />
+    <div class="item">
+        <div class="inputDesc">Number of cores in the cluster: </div>
+        <input type="number" name="textBox" class="textbox" id="cores" value="116" onclick="buttonPressed()" onblur="buttonPressed()" />
+    </div>
+    <br /><br />
+    <div class="item">
+        <div class="inputDesc">Spark Partition Size (MB): </div>
+        <input type="number" name="textBox" class="textbox" id="partitionSize" value="128" onclick="buttonPressed()" onblur="buttonPressed()" />
+    </div>
+    <br /><br />
+    <b>Here are the suggested Spark configs that you may want to use: </b><br />
+    <div class="item">
+        <div id="suggestedShufflePartitions">spark.conf.set("spark.sql.shuffle.partitions", 4292)</div>
+    </div>
+    <br />
+    <div class="item">
+        <div id="maxPartitionBytes">spark.conf.set("spark.sql.files.maxPartitionBytes", 134217728)</div>
+    </div>
+</form>

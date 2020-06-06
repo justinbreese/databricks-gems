@@ -35,7 +35,40 @@ Explain the args being passed in order:
 * In the Databricks World, a cluster uses a single `applicationId`
 * The port is dynamic; meaning it is a different value each time it starts up or restarts - so you may have to periodically re-run this command to get the latest port
 
+# [sparkShufflePartitionCalculator.py](../shufflePartitionCalculator/sparkShufflePartitionCalculator.py)
+* Quick and dirty calculator that helps you figure out the optimal configurations for your `spark.sql.files.maxPartitionBytes` and `spark.sql.shuffle.partitions`
+
+## Prerequisites
+* You know your `shuffleRead` amount for a given Spark job
+
+## Sample command
+`python3 .\shufflePartitionCalculator\sparkShufflePartitionCalculator.py 550 116 128`
+
+Explain the args being passed in order:
+* The size of the `shuffleRead` for a given Spark job
+* The amount of cores available in your cluster
+* The `partitionSize` that you would like to consider for this job (128MB is the default)
+
+## Output
+The command will output something like this:
+```
+Total Spark Partitions: 4400.0
+Cluster core cycles: 37.93103448275862
+Suggested Shuffle Partitions: 4292
+
+--Settings to use--
+spark.conf.set("spark.sql.files.maxPartitionBytes", 134217728)
+spark.conf.set("spark.sql.shuffle.partitions", 4292)
+```
+
+Description of the output:
+* Total Spark Partitions is the total amount of Spark partitions that will need to be processed for this job
+* Cluster core cycles is the amount of times a given core will have to do work (Total Spark Partitions / amount of cores in your cluster)
+* Suggested shuffle partitions is what this calculator recommends for your `spark.sql.shuffle.partitions`
+* Finally, the output provides you with the actual Spark configs that you can use: 
+>```spark.conf.set("spark.sql.files.maxPartitionBytes", 134217728)
+spark.conf.set("spark.sql.shuffle.partitions", 4292)```
+
 # TODO
-* Shuffle calculator
 * Passing variables from job params to a notebook
 * Moving local files via DBFS
