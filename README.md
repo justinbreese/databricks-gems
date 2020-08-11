@@ -1,6 +1,25 @@
 # Databricks Gems
 While working at Databricks, I have found many tips and tricks that customers have found valuable. So, I put them out on here so that everyone can benefit from. Welcome to Databricks Gems! There are helpful gems for the UI, API, etc.
 
+# [deployMws.sh](../master/deployMws.sh)
+Currently a WIP: Deploying a new multiple workspaces (MWS) installation. This script creates the necessary AWS and Databricks resources. 
+
+## Prerequisites
+* You have the AWS CLI setup on your laptop with full EC2, S3, and IAM perms
+* You have a given `clusterId`
+
+## Sample command
+`./deployMws.sh first-deployment 11111-1111-1111-11111 myEmail@address.com awesomeP@assword us-east-1 false false`
+
+Explain the args being passed in order:
+* Name of the deployment that you want to create (e.g. the cname)
+* Databricks MWS accountId
+* Email/username for the Databricks account
+* Password for the Databricks account
+* AWS region
+* BYO VPC functionality (boolean)
+* BYO CMK functionality (boolean)
+
 # [uploadNotebook.py](../master/uploadNotebook.py)
 Brief demo on how to use the Databricks REST API to upload a given file (python in this case) to your Databricks workspace
 
