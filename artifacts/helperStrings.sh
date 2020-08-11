@@ -1,4 +1,11 @@
 #!/bin/sh
+getWorkspaceStatus() {
+  workspaceStatus=$(curl -s -X GET -u "$u:$p" -H "Content-Type: application/json" \
+    "https://accounts.cloud.databricks.com/api/2.0/accounts/$databricksMasterAccountId/workspaces/$workspaceId" \
+   | jq -r '.workspace_status_message')
+
+}
+
 assumeRolePolicyDocument='{
     "Version": "2012-10-17",
     "Statement": [

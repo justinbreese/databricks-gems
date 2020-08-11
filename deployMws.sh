@@ -19,15 +19,18 @@ s3BucketName="databricks-e2-"$deploymentName
 storageConfigName="storage-config-"$deploymentName
 
 # helper strings file - this has a lot of the longs json strings that are customized based on the above configs
-. includes/helperStrings.sh
+. artifacts/helperStrings.sh
 
 # you need an iam role that you can create things (buckets and roles) first
+echo "Setting up the IAM role."
 crossAccountArn=$(aws iam create-role --role-name $crossAccountIamRoleName --assume-role-policy-document "$assumeRolePolicyDocument" | jq -r '.Role.Arn')
 
 # TODO: if byovpc and cmk then use a different json file
+echo "Adding a policy to the role."
 aws iam put-role-policy --role-name $crossAccountIamRoleName --policy-name $crossAccountIamRoleNamePolicyName --policy-document "$iamPutRolePolicy"
 
 # create a credentialsId
+echo "Creating the credentials within Databricks."
 credentialsId=$(curl -s -X POST -u "$u:$p" -H "Content-Type: application/json" \
     "https://accounts.cloud.databricks.com/api/2.0/accounts/$databricksMasterAccountId/credentials" \
    -d '{
@@ -40,10 +43,13 @@ credentialsId=$(curl -s -X POST -u "$u:$p" -H "Content-Type: application/json" \
 }' | jq -r '.credentials_id')
 
 # create an s3 bucket and policy
+echo "Creating an S3 bucket."
 aws s3api create-bucket --bucket $s3BucketName --region $awsRegion
+echo "Adding a policy to the S3 bucket."
 aws s3api put-bucket-policy --bucket $s3BucketName --policy "$putBucketPolicy"
 
 # create a storage configuration
+echo "Creating the storage configuration within Databricks."
 storageConfigurationId=$(curl -s -X POST -u "$u:$p" -H "Content-Type: application/json" \
     "https://accounts.cloud.databricks.com/api/2.0/accounts/$databricksMasterAccountId/storage-configurations" \
    -d '{
@@ -67,8 +73,9 @@ if [ "$isByoCMK" = true ]; then
 fi
 
 # start the actual deployment
+echo "Starting the Databricks deployment."
 if [ "$isByoVPC" = true ]; then
-    curl -s -X POST -u "$u:$p" -H "Content-Type: application/json" \
+    workspaceId=$(curl -s -X POST -u "$u:$p" -H "Content-Type: application/json" \
     "https://accounts.cloud.databricks.com/api/2.0/accounts/$databricksMasterAccountId/workspaces" \
     -d '{
         "workspace_name": "'$workspaceName'",
@@ -78,9 +85,9 @@ if [ "$isByoVPC" = true ]; then
         "storage_configuration_id": "'$storageConfigurationId'",
         "network_id": "'$networkId'",
         "is_no_public_ip_enabled": true
-        }'
+        }'| jq -r '.workspace_id')
 else
-    curl -s -X POST -u "$u:$p" -H "Content-Type: application/json" \
+    workspaceId=$(curl -s -X POST -u "$u:$p" -H "Content-Type: application/json" \
     "https://accounts.cloud.databricks.com/api/2.0/accounts/$databricksMasterAccountId/workspaces" \
     -d '{
         "workspace_name": "'$workspaceName'",
@@ -89,10 +96,20 @@ else
         "credentials_id": "'$credentialsId'",
         "storage_configuration_id": "'$storageConfigurationId'",
         "is_no_public_ip_enabled": false
-        }'
+        }'| jq -r '.workspace_id')
 fi
 
-# workspace has been successfully created and is ready to go!
+# check to see if the deployment is complete
+# workspaceId="6319535698576933"
+echo Checking on the Databricks deployment status for workspace: $workspaceId - this should be completed within 3 minutes.
+getWorkspaceStatus
+while [ "$workspaceStatus" != "Workspace is running." ]
+do  
+  sleep 30
+  getWorkspaceStatus
+  echo "The workspace is still being setup... checking again in 30 seconds."
+done
 
-# echo Success. Wait 2 minutes and then go to: https://"$deploymentName".cloud.databricks.com and login!
+echo $workspaceStatus - Go to https://$deploymentName.cloud.databricks.com and login!
+
 # TODO: create first username/pw
