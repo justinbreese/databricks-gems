@@ -5,8 +5,8 @@ While working at Databricks, I have found many tips and tricks that customers ha
 Currently a WIP: Deploying a new multiple workspaces (MWS) installation. This script creates the necessary AWS and Databricks resources. 
 
 ## Prerequisites
-* You have the AWS CLI setup on your laptop with full EC2, S3, and IAM perms
-* You have a given `clusterId`
+* You have the AWS CLI setup on your laptop; with a role that has full EC2, S3, and IAM perms
+* jq is installed
 
 ## Sample command
 `./deployMws.sh first-deployment 11111-1111-1111-11111 myEmail@address.com awesomeP@assword us-east-1 false false`
