@@ -20,6 +20,9 @@ Explain the args being passed in order:
 * BYO VPC functionality (boolean)
 * BYO CMK functionality (boolean)
 
+## TODO
+* Build out functionality for BYOVPC and CMK
+
 # [uploadNotebook.py](../master/uploadNotebook.py)
 Brief demo on how to use the Databricks REST API to upload a given file (python in this case) to your Databricks workspace
 
