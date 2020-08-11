@@ -6,6 +6,7 @@ Currently a WIP: Deploying a new multiple workspaces (MWS) installation. This sc
 
 ## Prerequisites
 * You have the AWS CLI setup on your laptop; with a role that has full EC2, S3, and IAM perms
+* Have a MWS `accountId`, username, and password - go [here](https://docs.databricks.com/administration-guide/multiworkspace/new-workspace-aws.html) if you need more information.
 * jq is installed
 
 ## Sample command
