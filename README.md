@@ -6,14 +6,14 @@ Currently a WIP: Deploying a new multiple workspaces (MWS) installation. This sc
 Only works on non-BYOVPC and non-CMK configurations - this will get fixed in the next few days, though.
 
 ## Prerequisites
-* You have the AWS CLI setup on your laptop; with a role that has full EC2, S3, and IAM perms
-* Have a MWS `accountId`, username, and password - go [here](https://docs.databricks.com/administration-guide/multiworkspace/new-workspace-aws.html) if you need more information.
-* jq is installed
+* AWS CLI setup on your laptop; configured with a role that has full EC2, S3, and IAM perms
+* Databricks MWS `accountId`, username, and password - go [here](https://docs.databricks.com/administration-guide/multiworkspace/new-workspace-aws.html) if you need more information.
+* jq is installed - `brew install jq` 
 
 ## Sample command
 `./deployMws.sh first-deployment 11111-1111-1111-11111 myEmail@address.com awesomeP@assword us-east-1 false false`
 
-Explain the args being passed in order:
+Explain the args that are being passed (in order):
 * Name of the deployment that you want to create (e.g. the cname)
 * Databricks MWS accountId
 * Email/username for the Databricks account
