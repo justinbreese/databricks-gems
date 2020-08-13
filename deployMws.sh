@@ -63,8 +63,17 @@ storageConfigurationId=$(curl -s -X POST -u "$u:$p" -H "Content-Type: applicatio
 # if byovpc then we have to do a couple of steps
 if [ "$isByoVPC" = true ]; then
   # get configs for the VPC
-  echo "do something"
-  networkId=null
+  echo "Creating the VPC."
+  networkId=$(aws ec2 create-vpc --cidr-block blah | jq -r '.Vpc.VpcId')
+  echo "Creating the subnet."
+  aws ec2 create-subnet --vpc-id blah --cidr-block blah
+  echo "Creating the subnet."
+  aws ec2 create-subnet --vpc-id blah --cidr-block blah
+  aws ec2 create-internet-gateway
+  aws ec2 attach-internet-gateway --vpc-id blah --internet-gateway-id blah
+  aws ec2 create-route-table --vpc-id blah
+  aws ec2 create-route --route-table-idblah --destination-cidr-block blah--gateway-id blah
+  aws ec2 associate-route-table  --subnet-id blah --route-table-id blah
 fi
 # TODO: create cmk
 if [ "$isByoCMK" = true ]; then
@@ -113,3 +122,7 @@ done
 echo $workspaceStatus - Go to https://$deploymentName.cloud.databricks.com and login!
 
 # TODO: create first username/pw
+## create-vpc
+## create route tables
+## create subnet(s)
+## did we want to create any initial instance profiles and choose an s3 bucket, etc?
