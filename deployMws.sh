@@ -60,16 +60,16 @@ storageConfigurationId=$(curl -s -X POST -u "$u:$p" -H "Content-Type: applicatio
 }' | jq -r '.storage_configuration_id')
 
 # TODO: create vpc
-
 # if byovpc then we have to do a couple of steps
 if [ "$isByoVPC" = true ]; then
-  # get configs for vpc from jensen
+  # get configs for the VPC
   echo "do something"
   networkId=null
 fi
 # TODO: create cmk
 if [ "$isByoCMK" = true ]; then
     echo "do something"
+    cmkId=null
 fi
 
 # start the actual deployment
