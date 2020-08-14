@@ -19,7 +19,7 @@ s3BucketName="databricks-e2-"$deploymentName
 storageConfigName="storage-config-"$deploymentName
 
 # helper strings file - this has a lot of the longs json strings that are customized based on the above configs
-. artifacts/helperStrings.sh
+. helperStrings.sh
 
 # you need an iam role that you can create things (buckets and roles) first
 echo "Setting up the IAM role."
@@ -126,3 +126,4 @@ echo $workspaceStatus - Go to https://$deploymentName.cloud.databricks.com and l
 ## create route tables
 ## create subnet(s)
 ## did we want to create any initial instance profiles and choose an s3 bucket, etc?
+## create teardown script

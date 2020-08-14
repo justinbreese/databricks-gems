@@ -1,8 +1,8 @@
 # Databricks Gems
 While working at Databricks, I have found many tips and tricks that customers have found valuable. So, I put them out on here so that everyone can benefit from. Welcome to Databricks Gems! There are helpful gems for the UI, API, etc.
 
-# [deployMws.sh](../master/deployMws.sh)
-Currently a WIP: Deploying a new multiple workspaces (MWS) installation. This script creates the necessary AWS and Databricks resources. 
+# [Deploy Multiple Workspaces](../master/deployMws/deploy.sh)
+WIP: Deploying a new multiple workspaces (MWS) installation. This script creates the necessary AWS and Databricks resources. 
 Only works on non-BYOVPC and non-CMK configurations - this will get fixed in the next few days, though.
 
 ## Prerequisites
