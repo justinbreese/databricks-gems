@@ -25,6 +25,12 @@ Explain the args that are being passed (in order):
 ## TODO
 * Build out functionality for BYOVPC and CMK
 
+# [perfTestAutomation.py] (../master/perTestAutomation.py)
+Automate your performance testing with Databricks notebooks! Leveraging Databricks Widgets, Jobs API, Delta Table for analysis, etc.
+
+## TODO
+* Lots of stuff, this is the initial commit
+
 # [uploadNotebook.py](../master/uploadNotebook.py)
 Brief demo on how to use the Databricks REST API to upload a given file (python in this case) to your Databricks workspace
 
