@@ -8,7 +8,7 @@ import time
 ap = argparse.ArgumentParser()
 ap.add_argument("-t", "--token", required=True,
 	help="User access token for your Databricks workspace")
-ap.add_argument("-s", "--start", required=False,
+ap.add_argument("-s", "--start", required=True,
 	help="Starting run number (e.g. already have 4 runs stored and want to start next run at 5")
 
 args = vars(ap.parse_args())
@@ -49,6 +49,3 @@ for run in range(start, start + runs):
             runPayload = json.loads(runTemplate.substitute(runName=testName, method=method, operation=operation, run=run, readQuery=readQuery))['JobConfig']
             # execute the command to send the requests
             runNow(runPayload)
-            # trying to back-off requests to see if it makes a difference?
-            time.sleep(15)
-        
