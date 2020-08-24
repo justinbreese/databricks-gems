@@ -10,13 +10,16 @@ ap.add_argument("-t", "--token", required=True,
 	help="User access token for your Databricks workspace")
 ap.add_argument("-s", "--start", required=True,
 	help="Starting run number (e.g. already have 4 runs stored and want to start next run at 5")
+ap.add_argument("-j", "--json_spec", required=True,
+    help="Link to the json spec file")
 
 args = vars(ap.parse_args())
 
 token = args["token"]
 start = int(args["start"])
+jsonSpec = args["json_spec"]
 
-with open('artifacts/perfTest.json', 'r') as json_file:
+with open(jsonSpec, 'r') as json_file:
     jsonConfigs = json.load(json_file)
 
 testName = jsonConfigs['Name']

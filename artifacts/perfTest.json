@@ -1,7 +1,7 @@
 {
     "Name": "MOR Read and Write Test",
     "Host": "https://demo.cloud.databricks.com",
-    "Runs": 5,
+    "Runs": 1,
     "Operations": [
         "read",
         "write"
