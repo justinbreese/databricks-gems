@@ -44,7 +44,7 @@ credentialsId=$(curl -s -X POST -u "$u:$p" -H "Content-Type: application/json" \
 
 # create an s3 bucket and policy
 echo "Creating an S3 bucket."
-aws s3api create-bucket --bucket $s3BucketName --region $awsRegion
+aws s3api create-bucket --bucket $s3BucketName --region $awsRegion --create-bucket-configuration LocationConstraint=$awsRegion
 echo "Adding a policy to the S3 bucket."
 aws s3api put-bucket-policy --bucket $s3BucketName --policy "$putBucketPolicy"
 
@@ -62,24 +62,56 @@ storageConfigurationId=$(curl -s -X POST -u "$u:$p" -H "Content-Type: applicatio
 # TODO: create vpc
 # if byovpc then we have to do a couple of steps
 if [ "$isByoVPC" = true ]; then
-  # get configs for the VPC
-  echo "Creating the VPC."
-  networkId=$(aws ec2 create-vpc --cidr-block blah | jq -r '.Vpc.VpcId')
-  echo "Creating the subnet."
-  aws ec2 create-subnet --vpc-id blah --cidr-block blah
-  echo "Creating the subnet."
-  aws ec2 create-subnet --vpc-id blah --cidr-block blah
-  aws ec2 create-internet-gateway
-  aws ec2 attach-internet-gateway --vpc-id blah --internet-gateway-id blah
-  aws ec2 create-route-table --vpc-id blah
-  aws ec2 create-route --route-table-idblah --destination-cidr-block blah--gateway-id blah
-  aws ec2 associate-route-table  --subnet-id blah --route-table-id blah
+  curl -X POST -n \
+    'https://accounts.cloud.databricks.com/api/2.0/accounts/<databricks-mws-master-account-id>/networks' \
+    -d '{
+    "network_name": "mycompany-vpc-example",
+    "vpc_id": "<aws-vpc-id>",
+    "subnet_ids": [
+      "subnet-021ad1d581b7f9f15",
+      "subnet-045821a75a1a9cb73",
+      "subnet-08a3d9c22abb6aec4",
+      "subnet-0585755d4293ecf45",
+      "subnet-0ee68e1f89c688a6b",
+      "subnet-0838439415cf57be5",
+      "subnet-02ee62a3592d6aaad",   
+      "subnet-092a22ad4450e98a8",
+      "subnet-0afe74147498b1e93",  
+    ],
+    "security_group_ids": [
+      "<aws-security-group-id>"
+    ]
+  }'
+
+
+
+  # # get configs for the VPC
+  # echo "Creating the VPC."
+  # networkId=$(aws ec2 create-vpc --cidr-block blah | jq -r '.Vpc.VpcId')
+  # echo "Creating the subnet."
+  # aws ec2 create-subnet --vpc-id blah --cidr-block blah
+  # echo "Creating the subnet."
+  # aws ec2 create-subnet --vpc-id blah --cidr-block blah
+  # aws ec2 create-internet-gateway
+  # aws ec2 attach-internet-gateway --vpc-id blah --internet-gateway-id blah
+  # aws ec2 create-route-table --vpc-id blah
+  # aws ec2 create-route --route-table-idblah --destination-cidr-block blah--gateway-id blah
+  # aws ec2 associate-route-table  --subnet-id blah --route-table-id blah
 fi
 # TODO: create cmk
 if [ "$isByoCMK" = true ]; then
     echo "do something"
     cmkId=null
 fi
+
+echo '{
+        "workspace_name": "'$workspaceName'",
+        "deployment_name": "'$deploymentName'",
+        "aws_region": "'$awsRegion'",
+        "credentials_id": "'$credentialsId'",
+        "storage_configuration_id": "'$storageConfigurationId'",
+        "is_no_public_ip_enabled": false
+        }'
 
 # start the actual deployment
 echo "Starting the Databricks deployment."
