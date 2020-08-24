@@ -1,0 +1,46 @@
+{
+    "Name": "MOR Read and Write Test",
+    "Host": "https://demo.cloud.databricks.com",
+    "Runs": 5,
+    "Operations": [
+        "read",
+        "write"
+    ],
+    "Methods": [
+        "ranked",
+        "outerJoined",
+        "antiJoinLeftJoinUnion"
+    ],
+    "ReadQuery": "pk = 496",
+    "JobConfig": {
+        "run_name": "${runName}",
+        "notebook_task": {
+            "notebook_path": "/Users/justin.breese@databricks.com/mor/mor",
+            "base_parameters":
+                {
+                    "operation": "${operation}",
+                    "method": "${method}",
+                    "readQuery": "${readQuery}",
+                    "run": "${run}"
+                }   
+        },
+        "new_cluster": {
+            "num_workers": 2,
+            "spark_version": "7.0.x-scala2.12",
+            "spark_conf": {
+                "spark.databricks.delta.fastQueryPath.dataskipping.enabled": "true",
+                "spark.databricks.delta.fastQueryPath.enabled": "true",
+                "spark.databricks.delta.checkpointV2.enabled": "true"
+            },
+            "aws_attributes": {
+                "first_on_demand": 1,
+                "availability": "SPOT_WITH_FALLBACK",
+                "zone_id": "us-west-2c",
+                "instance_profile_arn": "arn:aws:iam::997819012307:instance-profile/shard-demo-s3-access",
+                "spot_bid_price_percent": 100,
+                "ebs_volume_count": 0
+            },
+            "node_type_id": "i3.2xlarge"
+        }
+    }
+}
