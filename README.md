@@ -41,7 +41,7 @@ Explain the args that are being passed (in order):
 * BYO CMK functionality (boolean)
 * AWS AccountId
 
-# [perfTestAutomation.py] (../master/perTestAutomation.py)
+# [perfTestAutomation.py](../master/perTestAutomation.py)
 Automate your performance testing with Databricks notebooks! Leveraging Databricks Widgets, Jobs API, Delta Table for analysis, etc.
 
 ## TODO
