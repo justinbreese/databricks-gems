@@ -1,9 +1,25 @@
 # Databricks Gems
 While working at Databricks, I have found many tips and tricks that customers have found valuable. So, I put them out on here so that everyone can benefit from. Welcome to Databricks Gems! There are helpful gems for the UI, API, etc.
 
-# [deployMws.sh](../master/deployMws.sh)
-Currently a WIP: Deploying a new multiple workspaces (MWS) installation. This script creates the necessary AWS and Databricks resources. 
-Only works on non-BYOVPC and non-CMK configurations - this will get fixed in the next few days, though.
+# [Deploy Multiple Workspaces](../deployMws/deploy.sh)
+Multiple workspaces allows for customers to setup many workspaces. The Account API lets you programmatically create multiple new Databricks workspaces associated with a single Databricks account. Each workspace you create can have different configuration settings. To learn more, go to [this](https://docs.databricks.com/getting-started/overview.html) link.
+
+## What the code does
+Goes into the existing AWS account:
+* Creates S3 bucket and bucket policy
+* IAM role and role policy
+* Leverages the existing VPC, subnets, and security groups
+* Adds a NACL for RDS (TCP 3306)
+* Creates VPC endpoints for STS and Kinesis
+* Creates a CMK
+
+In the Databricks MWS API, it creates the following:
+* Credential configuration
+* Storage configuration
+* Configures the network
+* Configures the CMK
+
+Finally, the code returns the URL of the newly created workspace
 
 ## Prerequisites
 * AWS CLI setup on your laptop; configured with a role that has full EC2, S3, and IAM perms
@@ -11,7 +27,9 @@ Only works on non-BYOVPC and non-CMK configurations - this will get fixed in the
 * jq is installed - `brew install jq` 
 
 ## Sample command
-`./deployMws.sh first-deployment 11111-1111-1111-11111 myEmail@address.com awesomeP@assword us-east-1 false false`
+`cd deployMws`
+
+`./deploy.sh deploymentName databricksAccountId some@email.com databricksPassword us-west-2 true true awsAccountId`
 
 Explain the args that are being passed (in order):
 * Name of the deployment that you want to create (e.g. the cname)
@@ -21,9 +39,13 @@ Explain the args that are being passed (in order):
 * AWS region
 * BYO VPC functionality (boolean)
 * BYO CMK functionality (boolean)
+* AWS AccountId
+
+# [perfTestAutomation.py] (../master/perTestAutomation.py)
+Automate your performance testing with Databricks notebooks! Leveraging Databricks Widgets, Jobs API, Delta Table for analysis, etc.
 
 ## TODO
-* Build out functionality for BYOVPC and CMK
+* Lots of stuff, this is the initial commit
 
 # [uploadNotebook.py](../master/uploadNotebook.py)
 Brief demo on how to use the Databricks REST API to upload a given file (python in this case) to your Databricks workspace

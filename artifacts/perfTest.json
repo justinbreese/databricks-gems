@@ -1,0 +1,49 @@
+{
+    "Name": "MOR Read and Write Test",
+    "Host": "https://something.cloud.databricks.com",
+    "Runs": 3,
+    "Operations": [
+        "read",
+        "write"
+    ],
+    "Methods": [
+        "leftJoinUnionInserts",
+        "ranked",
+        "outerJoined",
+        "antiJoinLeftJoinUnion"
+    ],
+    "FileSize": "uipConfig",
+    "ReadQuery": "auth_id = 1064410930",
+    "JobConfig": {
+        "run_name": "${runName}",
+        "notebook_task": {
+            "notebook_path": "/Users/Justin_AllanBreese@intuit.com/live_tables/mor/main",
+            "base_parameters":
+                {
+                    "operation": "${operation}",
+                    "method": "${method}",
+                    "readQuery": "${readQuery}",
+                    "run": "${run}",
+                    "fileSize": "${fileSize}"
+                }   
+        },
+        "new_cluster": {
+            "num_workers": 5,
+            "spark_version": "7.0.x-scala2.12",
+            "spark_conf": {
+                "spark.databricks.delta.fastQueryPath.dataskipping.enabled": "true",
+                "spark.databricks.delta.fastQueryPath.enabled": "true",
+                "spark.databricks.delta.checkpointV2.enabled": "true"
+            },
+            "aws_attributes": {
+                "first_on_demand": 1,
+                "availability": "SPOT_WITH_FALLBACK",
+                "zone_id": "us-west-2b",
+                "instance_profile_arn": "arn:aws:iam::570264151593:instance-profile/databricks-livetables-prd",
+                "spot_bid_price_percent": 100,
+                "ebs_volume_count": 0
+            },
+            "node_type_id": "m5d.4xlarge"
+        }
+    }
+}
