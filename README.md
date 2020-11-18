@@ -52,7 +52,7 @@ This notebook/code goes through a merge on read architecture: there are three wa
 * Databricks User Access Token (UAT)
 
 ## How to use it
-* Download a file called `perfTestNotebook.dbc` in `/artifacts` this is a Databricks Notebook - this works fine in Community Edition
+* Download  `/artifacts/perfTestNotebook.dbc` - in this is a Databricks Notebook - this works fine in Community Edition
 * Import the notebook into Databricks
 * Go through each cell; I have lot of comments and explanation in there
 * Once you have the notebook working, then get your UAT and run the below sample command
