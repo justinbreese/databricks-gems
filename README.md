@@ -44,6 +44,29 @@ Explain the args that are being passed (in order):
 # [perfTestAutomation.py](../master/perfTestAutomation.py)
 Automate your performance testing with Databricks notebooks! Leveraging Databricks Widgets, Jobs API, Delta Table for analysis, etc.
 
+Performance testing is usually hard: you have to keep track of a lot of different items, store your results in a notebook, etc. It does not have to be that hard. 
+
+This notebook/code goes through a merge on read architecture: there are three ways to show the correct view so we want to test out each of them to see which performs better. This is simple to use and can be completely automated.
+
+## Prerequsites
+* Databricks User Access Token (UAT)
+
+## How to use it
+* Download a file called `perfTestNotebook.dbc` in `/artifacts` this is a Databricks Notebook - this works fine in Community Edition
+* Import the notebook into Databricks
+* Go through each cell; I have lot of comments and explanation in there
+* Once you have the notebook working, then get your UAT and run the below sample command
+* If you did it successfully, then you will see something like 
+![Image of successful api call](../master/artifacts/perfTestSuccess.png)
+
+## Sample command
+`python .\perfTestAutomation.py --token <yourTokenHere> --start 0 --json_spec /artifacts/perfTest.json`
+
+Explain the args that are being passed (in order):
+* Databricks User Access Token (UAT)
+* Starting number. If you have already done 5 runs (and they are saved in your table), then start with 6 so you do not have duplicate runs
+* Point to the json spec file. There is a sample file in `/artifacts/perfTest.json`
+
 ## TODO
 * Lots of stuff, this is the initial commit
 

@@ -1,34 +1,30 @@
 {
     "Name": "MOR Read and Write Test",
-    "Host": "https://something.cloud.databricks.com",
+    "Host": "https://demo.cloud.databricks.com",
     "Runs": 3,
     "Operations": [
-        "read",
-        "write"
+        "read"
     ],
     "Methods": [
-        "leftJoinUnionInserts",
         "ranked",
         "outerJoined",
         "antiJoinLeftJoinUnion"
     ],
-    "FileSize": "uipConfig",
-    "ReadQuery": "auth_id = 1064410930",
+    "ReadQuery": "id = 75",
     "JobConfig": {
         "run_name": "${runName}",
         "notebook_task": {
-            "notebook_path": "/Users/Justin_AllanBreese@intuit.com/live_tables/mor/main",
+            "notebook_path": "/Users/justin.breese@databricks.com/random/perfTestNotebook",
             "base_parameters":
                 {
                     "operation": "${operation}",
                     "method": "${method}",
                     "readQuery": "${readQuery}",
-                    "run": "${run}",
-                    "fileSize": "${fileSize}"
+                    "run": "${run}"
                 }   
         },
         "new_cluster": {
-            "num_workers": 5,
+            "num_workers": 1,
             "spark_version": "7.0.x-scala2.12",
             "spark_conf": {
                 "spark.databricks.delta.fastQueryPath.dataskipping.enabled": "true",
@@ -39,11 +35,11 @@
                 "first_on_demand": 1,
                 "availability": "SPOT_WITH_FALLBACK",
                 "zone_id": "us-west-2b",
-                "instance_profile_arn": "arn:aws:iam::570264151593:instance-profile/databricks-livetables-prd",
+                "instance_profile_arn": "arn:aws:iam::997819012307:instance-profile/shard-demo-s3-access",
                 "spot_bid_price_percent": 100,
                 "ebs_volume_count": 0
             },
-            "node_type_id": "m5d.4xlarge"
+            "node_type_id": "m5d.2xlarge"
         }
     }
 }
