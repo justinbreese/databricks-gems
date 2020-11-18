@@ -28,7 +28,6 @@ runs = jsonConfigs['Runs']
 operations = jsonConfigs['Operations']
 methods = jsonConfigs['Methods']
 readQuery = jsonConfigs['ReadQuery']
-fileSize = jsonConfigs['FileSize']
 runTemplate = Template(json.dumps(jsonConfigs))
 
 # run-now
@@ -50,6 +49,6 @@ for run in range(start, start + runs):
     for method in methods:
         for operation in operations:
             # replace some objects within the json template
-            runPayload = json.loads(runTemplate.substitute(runName=testName, method=method, operation=operation, run=run, readQuery=readQuery, fileSize=fileSize))['JobConfig']
+            runPayload = json.loads(runTemplate.substitute(runName=testName, method=method, operation=operation, run=run, readQuery=readQuery))['JobConfig']
             # execute the command to send the requests
             runNow(runPayload)
