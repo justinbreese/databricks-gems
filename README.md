@@ -67,9 +67,6 @@ Explain the args that are being passed (in order):
 * Starting number. If you have already done 5 runs (and they are saved in your table), then start with 6 so you do not have duplicate runs
 * Point to the json spec file. There is a sample file in `/artifacts/perfTest.json`
 
-## TODO
-* Lots of stuff, this is the initial commit
-
 # [uploadNotebook.py](../master/uploadNotebook.py)
 Brief demo on how to use the Databricks REST API to upload a given file (python in this case) to your Databricks workspace
 
