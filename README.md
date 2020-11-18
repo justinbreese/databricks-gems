@@ -1,6 +1,13 @@
 # Databricks Gems
 While working at Databricks, I have found many tips and tricks that customers have found valuable. So, I put them out on here so that everyone can benefit from. Welcome to Databricks Gems! There are helpful gems for the UI, API, etc.
 
+## Table of contents
+* Deploy Multiple Workspaces
+* perfTestAutomation.py
+* uploadNotebook.py
+* getPort.py
+* sparkShufflePartitionCalculator.py
+
 # [Deploy Multiple Workspaces](../master/deployMws/deploy.sh)
 Multiple workspaces allows for customers to setup many workspaces. The Account API lets you programmatically create multiple new Databricks workspaces associated with a single Databricks account. Each workspace you create can have different configuration settings. To learn more, go to [this](https://docs.databricks.com/getting-started/overview.html) link.
 
