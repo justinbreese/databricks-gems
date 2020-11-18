@@ -2,10 +2,10 @@
 While working at Databricks, I have found many tips and tricks that customers have found valuable. So, I put them out on here so that everyone can benefit from. Welcome to Databricks Gems! There are helpful gems for the UI, API, etc.
 
 ## Table of contents
-* [Deploy Multiple Workspaces](../master#deploy-multiple-workspaces)
-* [perfTestAutomation.py](../master#perftestautomationpy)
-* [uploadNotebook.py](../master#uploadNotebookpy)
-* [getPort.py](../master#getPortpy)
+* [Deploy Multiple Workspaces](../#deploy-multiple-workspaces)
+* [perfTestAutomation.py](../#perftestautomationpy)
+* [uploadNotebook.py](../#uploadNotebookpy)
+* [getPort.py](../#getPortpy)
 * [sparkShufflePartitionCalculator.py](../master#sparkShufflePartitionCalculatorpy)
 
 # [Deploy Multiple Workspaces](../master/deployMws/deploy.sh)
