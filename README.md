@@ -57,7 +57,7 @@ This notebook/code goes through a merge on read architecture: there are three wa
 * Go through each cell; I have lot of comments and explanation in there
 * Once you have the notebook working, then get your UAT and run the below sample command
 * If you did it successfully, then you will see something like 
-![Image of successful api call](../master/artifacts/perfTestSuccess.png)
+![Image of successful api call](../master/artifacts/perfTestSuccess_1.png)
 
 ## Sample command
 `python .\perfTestAutomation.py --token <yourTokenHere> --start 0 --json_spec /artifacts/perfTest.json`
