@@ -34,7 +34,7 @@
 
 # COMMAND ----------
 
-# omg there is type-ahead?!
+# omg there is auto completion?!
 from helpers import meaningOfLife
 
 # COMMAND ----------
