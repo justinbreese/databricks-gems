@@ -1,4 +1,7 @@
 # Databricks notebook source
+# MAGIC %md # Overview
+# * Import a repo: https://github.com/justinbreese/databricks-gems.git
+# * Call some helper functions
 # MAGIC %md # Random Spark things here
 
 # COMMAND ----------
