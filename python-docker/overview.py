@@ -1,11 +1,14 @@
 # Databricks notebook source
 # MAGIC %md # Overview
+# MAGIC This demo will show how you can easily go from notebooks -> laptop/IDE -> docker
+# MAGIC 
+# MAGIC We will go over the following items:
 # MAGIC * Import a repo: https://github.com/justinbreese/databricks-gems.git
 # MAGIC * Browse the repo directory structure
 # MAGIC * Call some helper functions
 # MAGIC * Add a library
 # MAGIC * Go to the IDE
-# MAGIC * Build my docker container
+# MAGIC * Build a docker container
 # MAGIC * Run it locally
 # MAGIC * Profit.
 
