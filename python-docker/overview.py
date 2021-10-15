@@ -1,11 +1,12 @@
 # Databricks notebook source
 # MAGIC %md # Overview
-# MAGIC This demo will show
-# MAGIC > Easily go from notebooks -> laptop/IDE -> docker
+# MAGIC > **Problem statement**: I want to be able to maintain a consistent environment between my IDE and Databricks notebooks.
 # MAGIC 
-# MAGIC > Keeping your libraries consistent!
+# MAGIC ## This demo will show:
+# MAGIC 1. Easily go from notebooks -> laptop/IDE -> docker
+# MAGIC 2. Keeping your libraries consistent!
 # MAGIC 
-# MAGIC We will go over the following items:
+# MAGIC ### We will go over the following items:
 # MAGIC * Import a repo: https://github.com/justinbreese/databricks-gems.git
 # MAGIC * Browse the repo directory structure
 # MAGIC * Call some helper functions
