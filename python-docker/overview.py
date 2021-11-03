@@ -12,8 +12,7 @@
 # MAGIC * Call some helper functions
 # MAGIC * Add a library
 # MAGIC * Go to the IDE
-# MAGIC * Build a docker container
-# MAGIC * Run it locally
+# MAGIC * Load your libs
 # MAGIC * Profit.
 
 # COMMAND ----------
